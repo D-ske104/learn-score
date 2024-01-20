@@ -12,6 +12,7 @@ defineProps<{
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
     </h3>
+    <p class="sentence">Tailwind</p>
   </div>
 </template>
 
@@ -37,5 +38,9 @@ h3 {
   .greetings h3 {
     text-align: left;
   }
+}
+
+.sentence {
+  @apply text-red-500;
 }
 </style>
