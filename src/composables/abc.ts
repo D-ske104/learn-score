@@ -18,7 +18,10 @@ export function defineAbcHeader(abcHeader: AbcHeader = {}) {
 export function useNote() {
   const note = ref(getRandomNote())
   const answer = ref<AbcNote | undefined>()
-  const isValid = computed(() => note.value === answer.value)
+  const isValid = computed<boolean | undefined>(() => {
+    if (answer.value === undefined) return undefined
+    return note.value === answer.value
+  })
   return { note, answer, isValid, getRandomNote }
 }
 

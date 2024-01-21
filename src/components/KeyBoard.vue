@@ -3,17 +3,17 @@ import KeyBoardScale from './KeyBoardScale.vue';
 
 import type { AbcNote } from "@/types/AbcNote";
 
-const note = defineModel<AbcNote>()
+const model = defineModel<AbcNote>()
 
 function handleUpdateModelValue(value: AbcNote): void {
-  note.value = value
+  model.value = value
 }
 
 </script>
 
 <template>
   <div class="keyboard">
-    <KeyBoardScale :model-value="note" class="scale" @update:model-value="handleUpdateModelValue" />
+    <KeyBoardScale :model-value="model" class="scale" @update:model-value="handleUpdateModelValue" />
   </div>
 </template>
 

@@ -15,5 +15,6 @@
   },
   "next": "Next",
   "correct": "Correct!",
+  "wrong": "Wrong!",
   "correct-percentage": "Correct"
 }

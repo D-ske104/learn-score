@@ -15,5 +15,6 @@
   },
   "next": "次へ",
   "correct": "正解！",
+  "wrong": "不正解！",
   "correct-percentage": "正解率"
 }

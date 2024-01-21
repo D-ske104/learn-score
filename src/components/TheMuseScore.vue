@@ -9,6 +9,7 @@ import { defineAbcHeader } from '../composables/abc'
 import type { AbcNote } from "../types/AbcNote"
 
 type Props = {
+  id: string
   note: AbcNote
 }
 
@@ -26,7 +27,7 @@ onMounted(() => {
 })
 
 function render(): void {
-  abcjs.renderAbc("paper", abcCode.value, {responsive: "resize", staffwidth: 80, paddingtop: 0, paddingbottom: 4})
+  abcjs.renderAbc(props.id, abcCode.value, {responsive: "resize", staffwidth: 80, paddingtop: 0, paddingbottom: 4})
 }
 
 watch(abcCode, () => {
@@ -37,7 +38,7 @@ watch(abcCode, () => {
 
 <template>
   <div class="score">
-    <div id="paper"></div>
+    <div :id="id"></div>
   </div>
 </template>
 

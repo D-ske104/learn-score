@@ -22,14 +22,14 @@ function handleClick(value: AbcNote): void {
 const dialog = ref<HTMLDialogElement | null>(null)
 
 watch(isValid, (value) => {
-  if (!value) return
+  if (value === undefined) return
+  value ? score.correct() : score.wrong()
   dialog.value?.showModal()
-  score.correct()
 })
 
 function next(): void {
-  note.value = getRandomNote()
   answer.value = undefined
+  note.value = getRandomNote()
   dialog.value?.close()
 }
 </script>
@@ -42,7 +42,7 @@ function next(): void {
           <TheScoreBoard />
         </section>
         <section class="muse-score-wrapper">
-          <TheMuseScore :note="note"/>
+          <TheMuseScore id="question-paper" :note="note"/>
         </section>
       </template>
       <template #footer>
@@ -51,9 +51,12 @@ function next(): void {
         </div>
       </template>
     </ThePanel>
-    <dialog ref="dialog" class="dialog">
-      <h1 class="text-4xl font-bold text-center">{{ $t("correct") }}</h1>
-      <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md" @click="next">{{ $t("next") }}</button>
+    <dialog ref="dialog" class="dialog" @click.capture="next">
+      <h1 class="text-4xl font-bold text-center">{{ $t( isValid ? "correct" : "wrong") }}</h1>
+      <p class="
+
+      ">正解: {{ $t(`scale.${note}`) }}</p>
+      <button class="mt-4 px-4 py-2 text-blue-500 font-bold text-xl rounded-md" @click="next">{{ $t("next") }}</button>
     </dialog>
   </TheContainer>
 </template>
@@ -66,7 +69,10 @@ function next(): void {
   @apply w-full max-w-xl m-auto;
 }
 .dialog {
-  @apply w-full max-w-xl m-auto aspect-square p-10 flex flex-col items-center justify-center;
+  @apply w-full max-w-xl m-auto aspect-square p-10 flex flex-col items-center justify-center cursor-pointer;
+}
+.dialog::backdrop {
+  @apply cursor-pointer;
 }
 .dialog:not([open]) {
   @apply hidden;
