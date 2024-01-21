@@ -1,22 +1,38 @@
 <script setup lang="ts">
-import 'abcjs/abcjs-audio.css';
+import { onMounted, computed, watch } from 'vue';
 import abcjs from "abcjs";
 
+import 'abcjs/abcjs-audio.css';
+
 import { defineAbcHeader } from '../composables/abc'
-import { onMounted } from 'vue';
+
+import type { AbcNote } from "../types/AbcNote"
+
+type Props = {
+  note: AbcNote
+}
+
+const props = defineProps<Props>()
 
 const abcProperties = defineAbcHeader({
   K: "C",
   L: "1/4",
 })
 
-const note = "C"
-
-const abcCode = abcProperties + note
+const abcCode = computed(() => abcProperties + props.note)
 
 onMounted(() => {
-  abcjs.renderAbc("paper", abcCode, {responsive: "resize", staffwidth: 80})
+  render()
 })
+
+function render(): void {
+  abcjs.renderAbc("paper", abcCode.value, {responsive: "resize", staffwidth: 80, paddingtop: 0, paddingbottom: 4})
+}
+
+watch(abcCode, () => {
+  render()
+})
+
 </script>
 
 <template>
@@ -26,7 +42,4 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.score {
-  @apply min-w-[50vw] flex justify-center;
-}
 </style>

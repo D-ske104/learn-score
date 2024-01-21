@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "abcjs": "^6.2.3",
-    "vue": "^3.3.11"
+    "vue": "^3.4.15"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.3.3",
