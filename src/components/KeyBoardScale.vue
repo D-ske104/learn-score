@@ -57,7 +57,7 @@ function handleInput(event: Event): void {
 }
 
 .key {
-  @apply col-span-2 flex flex-col items-center justify-end;
+  @apply col-span-2 flex flex-col items-center justify-end py-4;
 }
 
 .key.c.white {
@@ -101,6 +101,10 @@ function handleInput(event: Event): void {
   @apply hidden;
 }
 .label-text {
-  @apply p-4 text-2xl font-bold;
+  @apply text-2xl font-bold;
+}
+
+.key.black .label-text {
+  @apply hidden
 }
 </style>
