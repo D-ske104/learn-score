@@ -43,8 +43,8 @@ function next(): void {
       </template>
     </ThePanel>
     <dialog ref="dialog" class="dialog">
-      <h1 class="text-4xl font-bold text-center">Correct!</h1>
-      <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md" @click="next">Next</button>
+      <h1 class="text-4xl font-bold text-center">{{ $t("correct") }}</h1>
+      <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md" @click="next">{{ $t("next") }}</button>
     </dialog>
   </TheContainer>
 </template>
