@@ -2,9 +2,6 @@
 import type { AbcNote } from "../types/AbcNote"
 
 import { abcNoteList } from "@/composables/abc";
-import { useI18n } from "vue-i18n";
-
-const { t } = useI18n()
 
 const abcNoteElements = abcNoteList.map(note => {
   return {
@@ -37,7 +34,7 @@ function handleInput(event: Event): void {
         type="radio"
         @input="handleInput"
       >
-      <span class="label-text">{{ t(`scale.${[el.note]}`) }}</span>
+      <span class="label-text">{{ $t(`scale.${[el.note]}`) }}</span>
     </label>
   </div>
 </template>
