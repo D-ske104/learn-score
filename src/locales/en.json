@@ -14,5 +14,6 @@
     "G#": "G#"
   },
   "next": "Next",
-  "correct": "Correct!"
+  "correct": "Correct!",
+  "correct-percentage": "Correct"
 }

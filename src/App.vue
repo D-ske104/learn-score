@@ -3,10 +3,15 @@ import { ref, watch } from 'vue';
 
 import TheContainer from './components/TheContainer.vue';
 import ThePanel from './components/ThePanel.vue';
-import TheScore from './components/TheScore.vue';
+import TheScoreBoard from './components/TheScoreBoard.vue';
+import TheMuseScore from './components/TheMuseScore.vue';
 import KeyBoard from './components/KeyBoard.vue';
 
 import { useNote } from './composables/abc';
+import { useScore } from './stores/score'
+
+const score = useScore()
+
 import type { AbcNote } from './types/AbcNote';
 const { note, answer, isValid, getRandomNote } = useNote()
 
@@ -19,6 +24,7 @@ const dialog = ref<HTMLDialogElement | null>(null)
 watch(isValid, (value) => {
   if (!value) return
   dialog.value?.showModal()
+  score.correct()
 })
 
 function next(): void {
@@ -32,9 +38,12 @@ function next(): void {
   <TheContainer>
     <ThePanel>
       <template #default>
-        <div class="score-wrapper">
-          <TheScore :note="note"/>
-        </div>
+        <section class="scoreboard-wrapper">
+          <TheScoreBoard />
+        </section>
+        <section class="muse-score-wrapper">
+          <TheMuseScore :note="note"/>
+        </section>
       </template>
       <template #footer>
         <div class="keybord-wrapper">
@@ -50,7 +59,7 @@ function next(): void {
 </template>
 
 <style scoped>
-.score-wrapper {
+.muse-score-wrapper {
   @apply w-full max-w-xl aspect-video m-auto;
 }
 .keybord-wrapper {
