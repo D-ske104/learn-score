@@ -37,6 +37,9 @@ function next(): void {
 <template>
   <TheContainer>
     <ThePanel>
+      <template #header>
+        <h1 class="text-4xl font-bold text-center">{{ $t("title") }}</h1>
+      </template>
       <template #default>
         <section class="scoreboard-wrapper">
           <TheScoreBoard />
